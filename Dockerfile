@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Dockerfile                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: klever <klever@student.42.fr>              +#+  +:+       +#+         #
+#    By: kbarahon <kbarahon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/02 01:56:08 by klever            #+#    #+#              #
-#    Updated: 2020/11/02 14:53:01 by klever           ###   ########.fr        #
+#    Updated: 2020/11/02 20:07:41 by kbarahon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,11 +28,11 @@ RUN apt-get -y install nginx
 # Install MySQL
 RUN apt-get -y install mariadb-server
 
-
-COPY ./srcs/start_container.sh ./
-COPY ./srcs/nginx-conf ./tmp/nginx-conf
-COPY ./srcs/phpmyadmin.inc.php ./tmp/phpmyadmin.inc.php
-COPY ./srcs/wp-config.php ./tmp/wp-config.php
+RUN mkdir volumns
+COPY ./srcs/start_container.sh ./volumns
+COPY ./srcs/nginx.conf ./volumns
+COPY ./srcs/phpmyadmin.inc.php ./volumns
+COPY ./srcs/wp-config.php ./volumns
 
 CMD sh start_container.sh
 
