@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    start_container.sh                                 :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: klever <klever@student.42.fr>              +#+  +:+       +#+         #
+#    By: kbarahon <kbarahon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/02 12:28:55 by klever            #+#    #+#              #
-#    Updated: 2020/11/03 02:29:49 by klever           ###   ########.fr        #
+#    Updated: 2020/11/03 17:57:21 by kbarahon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,7 @@ echo "<?php phpinfo(); ?>" >> /var/www/localhost/index.php
 
 # SSL
 mkdir /etc/nginx/ssl
-mkdir /etc/nginx/ssl/certs/
-mkdir /etc/nginx/ssl/private/
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj '/C=FR/ST=75/L=Paris/O=42/CN=sdunckel' -keyout /etc/nginx/ssl/private/localhost.key -out /etc/nginx/ssl/certs/localhost.crt
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj '/C=FR/ST=75/L=Paris/O=42/CN=sdunckel' -keyout /etc/nginx/ssl/localhost.key -out /etc/nginx/ssl/localhost.pem
 
 # Config NGINX
 ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhost
