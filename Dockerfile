@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Dockerfile                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kbarahon <kbarahon@student.42.fr>          +#+  +:+       +#+         #
+#    By: klever <klever@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/02 01:56:08 by klever            #+#    #+#              #
-#    Updated: 2020/11/02 20:07:41 by kbarahon         ###   ########.fr        #
+#    Updated: 2020/11/03 02:28:51 by klever           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,8 @@ RUN apt-get -y install nginx
 RUN apt-get -y install mariadb-server
 
 RUN mkdir volumns
-COPY ./srcs/start_container.sh ./volumns
-COPY ./srcs/nginx.conf ./volumns
+COPY ./srcs/start_container.sh .
+COPY ./srcs/nginx.conf /etc/nginx/sites-available/localhost
 COPY ./srcs/phpmyadmin.inc.php ./volumns
 COPY ./srcs/wp-config.php ./volumns
 
