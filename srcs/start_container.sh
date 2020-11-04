@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    start_container.sh                                 :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: klever <klever@student.42.fr>              +#+  +:+       +#+         #
+#    By: kbarahon <kbarahon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/02 12:28:55 by klever            #+#    #+#              #
-#    Updated: 2020/11/04 05:07:01 by klever           ###   ########.fr        #
+#    Updated: 2020/11/04 21:12:11 by kbarahon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,6 @@ mkdir /etc/nginx/ssl
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj '/C=FR/ST=75/L=Paris/O=42/CN=localhost' -keyout /etc/nginx/ssl/localhost.key -out /etc/nginx/ssl/localhost.crt
 
 # Config NGINX
-ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhost
 rm -rf /etc/nginx/sites-enabled/default
 
 # Config MYSQL
@@ -65,4 +64,4 @@ mv /volumns/style.css /var/www/localhost/menu
 service php7.3-fpm start
 service nginx start
 
-bash 
+bash
