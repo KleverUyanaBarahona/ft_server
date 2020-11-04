@@ -6,7 +6,7 @@
 #    By: klever <klever@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/02 01:56:08 by klever            #+#    #+#              #
-#    Updated: 2020/11/03 02:28:51 by klever           ###   ########.fr        #
+#    Updated: 2020/11/04 04:42:58 by klever           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ COPY ./srcs/start_container.sh .
 COPY ./srcs/nginx.conf /etc/nginx/sites-available/localhost
 COPY ./srcs/phpmyadmin.inc.php ./volumns
 COPY ./srcs/wp-config.php ./volumns
+COPY ./srcs/index.html ./volumns
+COPY ./srcs/style.css ./volumns
 
 CMD sh start_container.sh
 

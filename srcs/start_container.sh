@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    start_container.sh                                 :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kbarahon <kbarahon@student.42.fr>          +#+  +:+       +#+         #
+#    By: klever <klever@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/02 12:28:55 by klever            #+#    #+#              #
-#    Updated: 2020/11/03 17:57:21 by kbarahon         ###   ########.fr        #
+#    Updated: 2020/11/04 05:07:01 by klever           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,9 @@ mkdir /var/www/localhost && touch /var/www/localhost/index.php
 echo "<?php phpinfo(); ?>" >> /var/www/localhost/index.php
 
 # SSL
+
 mkdir /etc/nginx/ssl
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj '/C=FR/ST=75/L=Paris/O=42/CN=sdunckel' -keyout /etc/nginx/ssl/localhost.key -out /etc/nginx/ssl/localhost.pem
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj '/C=FR/ST=75/L=Paris/O=42/CN=localhost' -keyout /etc/nginx/ssl/localhost.key -out /etc/nginx/ssl/localhost.crt
 
 # Config NGINX
 ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhost
@@ -47,6 +48,18 @@ wget -c https://wordpress.org/latest.tar.gz
 tar -xvzf latest.tar.gz
 mv wordpress/ /var/www/localhost
 mv /volumns/wp-config.php /var/www/localhost/wordpress
+
+#Config menu
+mkdir /var/www/localhost/php_info
+mkdir /var/www/localhost/nginx
+mv /var/www/localhost/index.php /var/www/localhost/php_info
+mv /var/www/html/index.nginx-debian.html /var/www/localhost/nginx
+mkdir /var/www/localhost/menu
+mkdir /var/www/localhost/cert
+cp /etc/nginx/ssl/localhost.key /var/www/localhost/cert
+cp /etc/nginx/ssl/localhost.crt /var/www/localhost/cert
+mv /volumns/index.html /var/www/localhost/menu
+mv /volumns/style.css /var/www/localhost/menu
 
 # Start
 service php7.3-fpm start
