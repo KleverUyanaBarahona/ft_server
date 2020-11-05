@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Dockerfile                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kbarahon <kbarahon@student.42.fr>          +#+  +:+       +#+         #
+#    By: klever <klever@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/02 01:56:08 by klever            #+#    #+#              #
-#    Updated: 2020/11/04 21:12:24 by kbarahon         ###   ########.fr        #
+#    Updated: 2020/11/05 02:51:20 by klever           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,22 +27,18 @@ RUN apt-get install -y wget
 RUN apt-get -y install nginx
 # Install MySQL
 RUN apt-get -y install mariadb-server
-
+# Config files
 RUN mkdir volumns
-# Config NGINX
 RUN mkdir volumns/localhost
-RUN ln -s /volumns/localhost /etc/nginx/sites-available/localhost
-RUN ln -s /volumns/localhost /etc/nginx/sites-enabled/localhost
-
 COPY ./srcs/start_container.sh .
-COPY ./srcs/nginx.conf ./volumns/localhost
+COPY ./srcs/nginx.conf /etc/nginx/sites-available/localhost
 COPY ./srcs/phpmyadmin.inc.php ./volumns
 COPY ./srcs/wp-config.php ./volumns
 COPY ./srcs/index.html ./volumns
 COPY ./srcs/style.css ./volumns
 COPY ./srcs/autoindex_off.sh ./
 COPY ./srcs/autoindex_on.sh ./
-
+# Run Script
 CMD sh start_container.sh
 
 

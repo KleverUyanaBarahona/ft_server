@@ -1,3 +1,3 @@
-sed 's/autoindex on/autoindex off/g' /volumns/localhost/nginx.conf
+sed -i 's/autoindex on/autoindex off/g' /etc/nginx/sites-enabled/localhost
 service nginx restart
 bash
